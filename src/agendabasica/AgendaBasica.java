@@ -19,8 +19,8 @@ public class AgendaBasica {
         // Almacena 1 persona: PersonalData Datos = new PersonalData ();
         PersonalData Datos[] = new PersonalData [100]; //Almacena 100 Personas
         Scanner lector = new Scanner (System.in);
-        int opc = 0, contUs=0; //ContUs me permite saber cuantos usuarios hay en el sistema
-    
+        int opc = 0, contUs=0, band=0;//posAux=0; //ContUs me permite saber cuantos usuarios hay en el sistema
+        String name; //variable para eliminar buscar y actualizar
     
         do{
             menu();
@@ -62,6 +62,29 @@ public class AgendaBasica {
                     System.out.println("Telefono: "+ Datos.getTelefono());
                     System.out.println("Area: "+ Datos.getAreas());
                  */ 
+                    System.out.println("Actualizar Datos:\n");
+                    System.out.println("Digite el nombre a Buscar");
+                    name = lector.next();
+                    for(int i=0; i<contUs;i++){
+                    
+                        if (name.equals(Datos[i].getNombre())){
+                            //posAux=i;
+                            band = 1;
+                            System.out.print("Digite la direccion del Usuario: ");
+                            Datos[i].setDireccion(lector.next());
+                            System.out.print("Digite el telefono del Usuario: ");
+                            Datos[i].setTelefono(lector.next());
+                            System.out.print("Digite el nombre de las areas: \n1.Quimica"+
+                            "\n2.Fisica \n3.Tecnologia \n4.Calculo \n5.Programacion\n");
+                            Datos[i].setAreas(lector.next());
+                        }
+                    }
+                    //Sino encuentra usuario muestra mensaje    
+                    if (band==0){
+                        System.out.println("Usuarios no encontrado\n");
+                    }
+                    else
+                        band=0;// si no hago esto funcionaria solo la primera vez
                     
                     break;
                 case 3:
